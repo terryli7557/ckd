@@ -1,12 +1,67 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-    <script src="app.js"></script>
-  </head>
+<html ng-app="kd">
 
-  <body>
-    test
-  </body>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+  <script src="app.js"></script>
+</head>
+
+<body ng-controller="ctrl as vm" class="container-fluid">
+  <form name="form">
+    <label for="number">number</label>
+    <input ng-model="vm.item.number" id="number" type="text" name="number" autofocus />
+
+    <label for="name">name</label>
+    <input type="text" name="name" id="name" ng-model="vm.item.name" />
+    <button class="btn btn-primary" name="button" ng-click="vm.addItem()">add</button>
+  </form>
+  <hr>
+  <div class="row" style="margin-bottom:1rem">
+    <div class="col-sm-3">
+      number
+    </div>
+    <div class="col-sm-3">
+      name
+    </div>
+    <div class="col-sm-3">
+      delete
+    </div>
+    <div class="col-sm-3">
+      <button class="btn btn-primary" name="refresh-all" ng-click="vm.refreshAll()">refresh all</button>
+    </div>
+  </div>
+  <hr>
+  <div ng-repeat="item in vm.list | filter: vm.search track by $index">
+    <div class="row">
+      <div class="col-sm-3" ng-dblclick="vm.editNumber($index, item)" ng-show="$index !== vm.editIndex">
+        {{$index + 1}} . {{item.order}}
+      </div>
+      <div class="col-sm-3" ng-show="$index === vm.editIndex">
+        <div><input type="text" ng-model="vm.editedNumber"></div>
+        <div>
+          <button class="btn btn-primary" ng-click="vm.saveEdit($index)">save</button>
+          <button class="btn btn-default" ng-click="vm.cancelEdit()">cancel</button>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        {{item.desc}}
+      </div>
+      <div class="col-sm-3">
+        <button name="del" class="btn btn-danger" ng-click="vm.deleteItem(item)">x</button>
+      </div>
+      <div class="col-sm-3">
+        <refresh-button number="{{item.order}}"></refresh-button>
+        <close-button></close-button>
+      </div>
+    </div>
+    <hr>
+  </div>
+</body>
+
 </html>
