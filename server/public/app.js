@@ -4,7 +4,7 @@
 //   console.log(data);
 // });
 
-const baseUri = 'https://fierce-bastion-10898.herokuapp.com';
+const baseUri = 'http://fierce-bastion-10898.herokuapp.com';
 angular.module('kd', [])
   .controller('ctrl', ctrl)
   .directive('refreshButton', refreshButton)
