@@ -1,12 +1,14 @@
-require('../config/config.js');
+require('./config/config.js');
 const express = require('express');
 const bodyparser = require('body-parser');
 const _ = require('lodash');
+const path = require('path');
 const {
   Item
-} = require('../model/item');
+} = require('./model/item');
 const app = express();
 app.use(bodyparser.json());
+app.use(express.static(`${__dirname}/public`));
 
 app.get('/items', async(req, res) => {
   try {
