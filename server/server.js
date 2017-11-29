@@ -4,7 +4,7 @@ const bodyparser = require('body-parser');
 const _ = require('lodash');
 const {
   Item
-} = require('../model/Item');
+} = require('../model/item');
 const app = express();
 app.use(bodyparser.json());
 
