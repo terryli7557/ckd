@@ -141,7 +141,10 @@ function refreshButton() {
           url = 'http://www.expressplus.com.au/cgi-bin/GInfo.dll?EmmisTrack'
           var parent = element.parent().parent()
           submitForm(url, parent, 'cno', number)
-        } else if (number.indexOf('2001') === 0) {
+        } else if (
+          number.indexOf('2001') === 0 ||
+          number.toLowerCase().indexOf('ub') === 0
+        ) {
           //aoud
           url = 'http://www.auodexpress.com/user.html#/way-search/' + number
 
@@ -161,10 +164,6 @@ function refreshButton() {
           url = 'http://changjiangexpress.com/Home/Query'
           var parent = element.parent().parent()
           submitForm(url, parent, 'numbers', number)
-        } else if (number.toLowerCase().indexOf('ub') === 0) {
-          url = 'http://ubonex.com/f/getOrderInfo'
-          var parent = element.parent().parent()
-          submitForm(url, parent, 'orderNum', number)
         }
       }
 
